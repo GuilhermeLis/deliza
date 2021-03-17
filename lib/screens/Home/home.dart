@@ -17,6 +17,7 @@ class _HomeState extends State<Home> {
       ),
       body: Center(
         child: Container(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
             children: <Widget>[
               Expanded(
@@ -41,7 +42,6 @@ class _HomeState extends State<Home> {
               ),
             ],
           ),
-          padding: const EdgeInsets.all(8.0),
         ),
       ),
     );
