@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../service/dataBase.dart';
+import '../../service/tables/pizza.dart';
 
 class SingUp extends StatefulWidget {
   SingUp({Key key}) : super(key: key);
@@ -9,6 +11,11 @@ class SingUp extends StatefulWidget {
 
 class _SingUpState extends State<SingUp> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController completNameController = TextEditingController();
+  TextEditingController valorController = TextEditingController();
+  TextEditingController categoryController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,65 +34,82 @@ class _SingUpState extends State<SingUp> {
           children: <Widget>[
             Container(
               child: TextFormField(
+                controller: completNameController,
                 decoration: const InputDecoration(
-                  hintText: 'Enter your email',
+                  hintText: 'Nome do produto',
                 ),
+                validator: (String value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
               ),
             ),
             Container(
               child: TextFormField(
+                controller: valorController,
                 decoration: const InputDecoration(
-                  hintText: 'Enter your email',
+                  hintText: 'Valor',
                 ),
+                validator: (String value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Você deve preencher esse input com alguma coisa';
+                  } else {
+                    var newNumber = double.tryParse(value);
+                    if (newNumber == null) {
+                      return 'Please enter with a number';
+                    }
+                    return null;
+                  }
+                },
               ),
             ),
             Container(
               child: TextFormField(
+                controller: categoryController,
                 decoration: const InputDecoration(
-                  hintText: 'Enter your email',
+                  hintText: 'Categoria',
                 ),
+                validator: (String value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
               ),
             ),
             Container(
               child: TextFormField(
+                controller: descriptionController,
                 decoration: const InputDecoration(
-                  hintText: 'Enter your email',
+                  hintText: 'description',
                 ),
+                validator: (String value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
               ),
             ),
-            Container(
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter your email',
-                ),
-              ),
-            ),
-            Container(
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter your email',
-                ),
-              ),
-            ),
-            Container(
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter your email',
-                ),
-              ),
-            ),
-            Container(
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter your email',
-                ),
-              ),
-            ),
-            Container(
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter your email',
-                ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  // Validate will return true if the form is valid, or false if
+                  // the form is invalid.
+                  if (_formKey.currentState.validate()) {
+                    // Process data.
+                    var newPizza = Pizza(
+                        completNameController.text,
+                        valorController.text,
+                        categoryController.text,
+                        descriptionController.text);
+                    pizzas.add(newPizza);
+                  }
+                },
+                child: Text('Submit', style: new TextStyle(fontSize: 20)),
               ),
             ),
           ],
