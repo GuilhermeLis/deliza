@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../SingUp/singup.dart';
+import '../Products/products.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -13,7 +14,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SplitIt'),
+        title: Text('Cadastro de produtos'),
       ),
       body: Center(
         child: Container(
@@ -37,7 +38,12 @@ class _HomeState extends State<Home> {
               Expanded(
                 child: ElevatedButton(
                   child: Text("Solicitar Pizza"),
-                  onPressed: () => {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Products()),
+                    );
+                  },
                 ),
               ),
             ],

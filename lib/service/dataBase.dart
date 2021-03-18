@@ -1,3 +1,3 @@
-import './tables/pizza.dart';
+import './migrations/pizza.dart';
 
 var pizzas = List<Pizza>();

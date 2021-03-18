@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../service/dataBase.dart';
-import '../../service/tables/pizza.dart';
+import '../../service/migrations/pizza.dart';
 
 class SingUp extends StatefulWidget {
   SingUp({Key key}) : super(key: key);
@@ -101,11 +101,8 @@ class _SingUpState extends State<SingUp> {
                   // the form is invalid.
                   if (_formKey.currentState.validate()) {
                     // Process data.
-                    var newPizza = Pizza(
-                        completNameController.text,
-                        valorController.text,
-                        categoryController.text,
-                        descriptionController.text);
+                    var newPizza = Pizza(completNameController.text,
+                        valorController.text, descriptionController.text);
                     pizzas.add(newPizza);
                   }
                 },
